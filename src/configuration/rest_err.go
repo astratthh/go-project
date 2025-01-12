@@ -6,7 +6,7 @@ import (
 type RestErr struct {
 	Message string   `json:"message"`
 	Err     string   `json:"errors"`
-	Code    int64    `json:"code"`
+	Code    int      `json:"code"`
 	Causes  []Causes `json:"causes,omitempty"` //slice de structs (lista dinamica) usada para representar erros com multiplas causas
 }
 
@@ -19,7 +19,7 @@ func (r *RestErr) Error() string { //receber e retornar erros por parametro
 	return r.Message
 }
 
-func NewRestErr(message, err string, code int64, causes []Causes) *RestErr { //construtor apontando para o metodo RestErr
+func NewRestErr(message, err string, code int, causes []Causes) *RestErr { //construtor apontando para o metodo RestErr
 	return &RestErr{
 		Message: message, //Mensagem que descreve o erro
 		Err:     err,     //Tipo de erro (not found)
